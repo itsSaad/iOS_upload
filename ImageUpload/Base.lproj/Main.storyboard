@@ -65,7 +65,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="wdk-Oz-1Fm">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="e5F-uV-YmM"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="e5F-uV-YmM">
+                            <connections>
+                                <action selector="chooseNewPhoto:" destination="vXZ-lx-hvc" id="sZi-II-6HY"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>

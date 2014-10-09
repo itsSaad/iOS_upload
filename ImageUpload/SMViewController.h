@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SMViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface SMViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @end

@@ -19,7 +19,7 @@
 
 @end
 
-@implementation SMViewController
+@implementation SMViewController 
 
 - (void)viewDidLoad
 {
@@ -39,6 +39,12 @@
 - (IBAction)chooseNewPhoto:(id)sender
 {
     NSLog(@"UIBar Button Tapped");
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+    
+    [self presentViewController:picker animated:YES completion:NULL];
 }
 
 -(void) getPhotosFromServer
@@ -90,6 +96,26 @@
     [imageView loadImageFromURL:aPhoto.imageURL placeholderImage:nil cachingKey:aPhoto.fileName];
     
     return aCell;
+}
+
+
+
+
+
+
+
+
+
+
+#pragma - mark UIImagePickerView Delegates
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    NSLog(@"Image Pick Complete");
+}
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    NSLog(@"Canceled Picking Image");
 }
 
 
