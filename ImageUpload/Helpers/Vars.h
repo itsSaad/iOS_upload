@@ -22,8 +22,8 @@
 
 //Locals
 
-#define apiGetAllPhotos "http://api_image.dev/api/v1/photos"
-#define apiUploadNewPhoto "http://api_image.dev/api/v1/photo"
+#define apiGetAllPhotos "http://image-upload-api.herokuapp.com/api/v1/photos.json"
+#define apiUploadNewPhoto "http://image-upload-api.herokuapp.com/api/v1/photo.json"
 
 
 #endif

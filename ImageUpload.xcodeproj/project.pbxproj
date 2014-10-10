@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		395B3F0D86FA12AF9BE36826 /* libPods-ImageUpload.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD1A3DF71A48006EB4B1437B /* libPods-ImageUpload.a */; };
+		9F1F8C1719E7FF1B00229F14 /* SMImageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1F8C1619E7FF1B00229F14 /* SMImageDetailViewController.m */; };
 		9F9CFF3019E040BA00B45782 /* SMPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9CFF2F19E040BA00B45782 /* SMPhoto.m */; };
 		9F9CFF3319E0572C00B45782 /* UIImageView+Network.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9CFF3219E0572C00B45782 /* UIImageView+Network.m */; };
 		9F9CFF3619E0577700B45782 /* FTWCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9CFF3519E0577700B45782 /* FTWCache.m */; };
@@ -40,6 +41,8 @@
 
 /* Begin PBXFileReference section */
 		1AAF1ED38E07692797FC7C43 /* Pods-ImageUpload.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageUpload.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ImageUpload/Pods-ImageUpload.debug.xcconfig"; sourceTree = "<group>"; };
+		9F1F8C1519E7FF1B00229F14 /* SMImageDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMImageDetailViewController.h; sourceTree = "<group>"; };
+		9F1F8C1619E7FF1B00229F14 /* SMImageDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMImageDetailViewController.m; sourceTree = "<group>"; };
 		9F9CFF2E19E040BA00B45782 /* SMPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SMPhoto.h; path = Models/SMPhoto.h; sourceTree = "<group>"; };
 		9F9CFF2F19E040BA00B45782 /* SMPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMPhoto.m; path = Models/SMPhoto.m; sourceTree = "<group>"; };
 		9F9CFF3119E0572C00B45782 /* UIImageView+Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Network.h"; sourceTree = "<group>"; };
@@ -159,6 +162,8 @@
 				9FAE177219E025E800282826 /* Main.storyboard */,
 				9FAE177519E025E800282826 /* SMViewController.h */,
 				9FAE177619E025E800282826 /* SMViewController.m */,
+				9F1F8C1519E7FF1B00229F14 /* SMImageDetailViewController.h */,
+				9F1F8C1619E7FF1B00229F14 /* SMImageDetailViewController.m */,
 				9FAE177819E025E800282826 /* Images.xcassets */,
 				9FAE176719E025E700282826 /* Supporting Files */,
 			);
@@ -346,6 +351,7 @@
 				9F9CFF3619E0577700B45782 /* FTWCache.m in Sources */,
 				9F9CFF3019E040BA00B45782 /* SMPhoto.m in Sources */,
 				9FAE176D19E025E700282826 /* main.m in Sources */,
+				9F1F8C1719E7FF1B00229F14 /* SMImageDetailViewController.m in Sources */,
 				9F9CFF3319E0572C00B45782 /* UIImageView+Network.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

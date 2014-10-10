@@ -21,8 +21,15 @@
         
         aPhoto.fileName = aPhotoDict[@"image_file_name"];
         NSString * tempURL = aPhotoDict[@"url"];
-        NSURL * url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@%@",@ServerBaseURL, tempURL]];
-        
+        NSURL * url = nil;
+        if (![tempURL containsString:@"http"])
+        {
+            url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@%@",@ServerBaseURL, tempURL]];
+        }
+        else
+        {
+            url = [[NSURL alloc] initWithString:tempURL];
+        }
         
         aPhoto.imageURL = url;
         [allPhotos addObject:aPhoto];

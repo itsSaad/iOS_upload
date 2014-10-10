@@ -52,7 +52,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="5jP-u1-7wz" kind="push" id="3Hu-8p-X1f"/>
+                                            <segue destination="5jP-u1-7wz" kind="push" identifier="image_detail" id="3Hu-8p-X1f"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -80,10 +80,10 @@
             </objects>
             <point key="canvasLocation" x="778" y="93"/>
         </scene>
-        <!--View Controller-->
+        <!--Image Detail View Controller-->
         <scene sceneID="JhX-4n-PUe">
             <objects>
-                <viewController id="5jP-u1-7wz" sceneMemberID="viewController">
+                <viewController id="5jP-u1-7wz" customClass="SMImageDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3U2-d0-oIM"/>
                         <viewControllerLayoutGuide type="bottom" id="s62-au-Vw7"/>
@@ -91,9 +91,17 @@
                     <view key="view" contentMode="scaleToFill" id="VYo-1E-fDC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EDe-3y-ara">
+                                <rect key="frame" x="0.0" y="-8" width="320" height="568"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="cIn-FY-qc5"/>
+                    <connections>
+                        <outlet property="imageView" destination="EDe-3y-ara" id="Lea-dI-ms3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rdT-BI-dph" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -16,5 +16,6 @@
     #import "Vars.h"
     #import "AFNetworking/AfNetworking.h"
     #import "UIImageView+Network.h"
+    #import "SVProgressHUD/SVProgressHUD.h"
 
 #endif

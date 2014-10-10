@@ -8,11 +8,13 @@
 
 #import "SMViewController.h"
 #import "SMPhoto.h"
+#import "SMImageDetailViewController.h"
 
 @interface SMViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView * tableView;
 @property (strong, nonatomic) NSArray * photos;
+@property (strong, nonatomic) SMPhoto * selectedPhoto;
 
 - (IBAction)chooseNewPhoto:(id)sender;
 
@@ -26,7 +28,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.photos = [NSArray array];
-    
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
     [self getPhotosFromServer];
 }
 
@@ -56,11 +58,22 @@
         NSLog(@"Success");
         self.photos = [SMPhoto createPhotoFromDict:responseObject];
         [self.tableView reloadData];
+        [SVProgressHUD dismiss];
     }
      failure:^(AFHTTPRequestOperation *operation, NSError * error)
     {
          NSLog(@"Failure");
+         [SVProgressHUD dismiss];
     }];
+}
+
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"image_detail"])
+    {
+        SMImageDetailViewController * vc = (SMImageDetailViewController *) segue.destinationViewController;
+        vc.image = self.selectedPhoto;
+    }
 }
 
 
@@ -93,9 +106,14 @@
     UILabel * title = (UILabel *)[aCell.contentView viewWithTag:56];
     UIImageView * imageView = (UIImageView *)[aCell.contentView viewWithTag:55];
     title.text = aPhoto.title;
-    [imageView loadImageFromURL:aPhoto.imageURL placeholderImage:nil cachingKey:aPhoto.fileName];
+    [imageView loadImageFromURL:aPhoto.imageURL placeholderImage:nil cachingKey:nil];
     
     return aCell;
+}
+
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.selectedPhoto = [self.photos objectAtIndex:indexPath.row];
 }
 
 
@@ -112,6 +130,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     NSLog(@"Image Pick Complete");
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
     [self dismissViewControllerAnimated:YES completion:nil];
     UIImage * theImage = [info  objectForKey:@"UIImagePickerControllerOriginalImage"];
     NSString * imageURl = [info objectForKey:@"UIImagePickerControllerReferenceURL"];
@@ -136,7 +155,7 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     parameters[@"photo[title]"] = [NSString stringWithFormat:@"Image %lu", self.photos.count+1];
 //    parameters[@"photo[file_name]"] = [NSString stringWithFormat:@"",nil]
-    [manager POST:@"http://localhost:3000/api/v1/photos.json" parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [manager POST:@"http://image-upload-api.herokuapp.com/api/v1/photos.json" parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFormData:imageData name:@"photo[image_data]"];
     }
           success:^(AFHTTPRequestOperation *operation, id responseObject)
@@ -147,6 +166,7 @@
           failure:^(AFHTTPRequestOperation *operation, NSError *error)
     {
         NSLog(@"Error: %@", error);
+         [SVProgressHUD showErrorWithStatus:@"Server Error"];
     }];
 }
 
