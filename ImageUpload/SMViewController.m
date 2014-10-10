@@ -112,10 +112,42 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     NSLog(@"Image Pick Complete");
+    [self dismissViewControllerAnimated:YES completion:nil];
+    UIImage * theImage = [info  objectForKey:@"UIImagePickerControllerOriginalImage"];
+    NSString * imageURl = [info objectForKey:@"UIImagePickerControllerReferenceURL"];
+    [self uploadImage:theImage withRefURL:imageURl];
+    
+    
 }
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     NSLog(@"Canceled Picking Image");
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void) uploadImage:(UIImage *) image withRefURL:(NSString *) refURL
+{
+    NSLog(@"Trying to Upload Image");
+    NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
+    imageData = [imageData base64EncodedDataWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    parameters[@"photo[title]"] = [NSString stringWithFormat:@"Image %lu", self.photos.count+1];
+//    parameters[@"photo[file_name]"] = [NSString stringWithFormat:@"",nil]
+    [manager POST:@"http://localhost:3000/api/v1/photos.json" parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFormData:imageData name:@"photo[image_data]"];
+    }
+          success:^(AFHTTPRequestOperation *operation, id responseObject)
+    {
+        NSLog(@"Success Uploading Image.");
+        [self getPhotosFromServer];
+    }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error)
+    {
+        NSLog(@"Error: %@", error);
+    }];
 }
 
 
